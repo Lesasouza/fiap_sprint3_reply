@@ -7,6 +7,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 import numpy as np
 
+from src.database.models.equipamento import Equipamento
 from src.database.tipos_base.database import Database
 from src.database.tipos_base.model import Model
 from src.database.tipos_base.model_mixins.display import SimpleTableFilter
@@ -138,15 +139,12 @@ class Sensor(Model):
         comment="Data de instalação do sensor"
     )
 
-    latitude: Mapped[float] = mapped_column(
-        Float, nullable=True, info={'label': 'Latitude'},
-        comment="Latitude do sensor"
+    equipamento_id: Mapped[int] = mapped_column(
+        ForeignKey('EQUIPAMENTO.id'), nullable=True, info={'label': 'Equipamento'},
+        comment="Equipamento ao qual o sensor está associado"
     )
 
-    longitude: Mapped[float] = mapped_column(
-        Float, nullable=True, info={'label': 'Longitude'},
-        comment="Longitude do sensor"
-    )
+    equipamento: Mapped[Equipamento] = relationship('Equipamento', back_populates='sensores')
 
     leituras: Mapped[List['LeituraSensor']] = relationship('LeituraSensor', back_populates='sensor', cascade="all, delete-orphan")
 
