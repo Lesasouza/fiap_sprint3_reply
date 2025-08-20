@@ -1,0 +1,23 @@
+
+Modelo de Entidade-Relacionamento:
+
+Tabela: TIPO_SENSOR
+  - id (INTEGER NOT NULL) [PK]
+  - nome (VARCHAR(255) NOT NULL)
+  - tipo (VARCHAR(15) NOT NULL)
+
+Tabela: SENSOR
+  - id (INTEGER NOT NULL) [PK]
+  - tipo_sensor_id (INTEGER NOT NULL) [FK -> TIPO_SENSOR]
+  - nome (VARCHAR(255) NOT NULL)
+  - descricao (VARCHAR(255))
+  - data_instalacao (DATETIME)
+  - latitude (FLOAT)
+  - longitude (FLOAT)
+
+Tabela: LEITURA_SENSOR
+  - id (INTEGER NOT NULL) [PK]
+  - sensor_id (INTEGER NOT NULL) [FK -> SENSOR]
+  - data_leitura (DATETIME NOT NULL)
+  - valor (FLOAT NOT NULL)
+
