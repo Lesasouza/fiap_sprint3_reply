@@ -1,10 +1,11 @@
 import streamlit as st
-from src.dashboard.plots.analise_exploratoria import analise_exploratoria_view
+from src.dashboard.machine import _machine_learning_results
 
 
 def _principal():
 
-    analise_exploratoria_view()
+    _machine_learning_results()
+    
 
 def get_principal_page() -> st.Page:
     """
