@@ -55,6 +55,17 @@ def _machine_learning_results():
         ax_acuracia.set_title('Acurácia por Modelo Otimizado')
         ax_acuracia.set_xlim(0, 1) 
         st.pyplot(fig_acuracia)
+        
+        st.text('''
+            Modelos menos precisos:
+        - Decision Tree (d3 e dNone) aparecem no início, com acurácia um pouco inferior aos demais (cerca de 0.82 - 0.84). 
+        - Esses modelos tendem a ser mais simples e menos robustos, o que explica a menor performance.
+        
+            Melhor desempenho:
+        - MLP (rede neural com 100 neurônios na camada escondida) apresenta a maior acurácia (~0.93).
+        - Isso sugere que o problema em questão se beneficia de maior capacidade de modelagem não-linear.
+        
+        ''')
 
         # Gráfico de F1-Score
         st.subheader("F1-Score dos Modelos")
@@ -65,6 +76,15 @@ def _machine_learning_results():
         ax_f1.set_xlim(0, 1)
         st.pyplot(fig_f1)
 
+        st.text('''
+            Modelos com menor F1 Score:
+        - Decision Tree (d3 e dNone) estão no final da lista novamente, com desempenho inferior (F1 próximo de 0.82 - 0.84).
+        - Isso reforça que árvores de decisão simples não conseguem capturar bem a complexidade do problema.
+
+            Melhor desempenho:
+        - MLP (rede neural com 100 neurônios na camada escondida) apresenta a maior acurácia (~0.93).
+        - Isso sugere que o problema em questão se beneficia de maior capacidade de modelagem não-linear.
+        ''')
         # Gráfico de Tempo de Treinamento
         st.subheader("Tempo de Treinamento")
         fig_tempo, ax_tempo = plt.subplots(figsize=(6, 4))
@@ -74,7 +94,20 @@ def _machine_learning_results():
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
         
+        
         st.pyplot(fig_tempo)
+        
+        st.text('''
+            Modelos extremamente rápidos:
+        - Logistic Regression (86), Decision Tree (d3, dNone), Naive Bayes, QDA, KNN (5 e 7) tiveram tempos de treinamento praticamente desprezíveis (menos de 2 segundos).
+        - São modelos leves, adequados quando velocidade é importante.)
+        
+            Modelos muito pesados:
+        - GradBoost 200 (~35s) e principalmente MLP (100) (~110s) foram os mais lentos.
+        - O custo da rede neural foi muito superior ao dos demais, confirmando o trade-off: maior acurácia/F1, mas com alto tempo de treinamento.
+        
+                ''')
+        
         
         st.header("🔍 Resumo da Análise dos Resultados")
         
