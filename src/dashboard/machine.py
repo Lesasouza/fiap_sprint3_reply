@@ -22,11 +22,10 @@ def _machine_learning_results():
 
     st.markdown("##### 🧪 O processo de otimização de modelos de machine learning foi concluído com sucesso. A seguir, apresentamos os resultados dos modelos otimizados, incluindo métricas de avaliação e tempos de treinamento.")
 
-    st.markdown("##### 🧠 Nosso grande desafio foi identificar corretamente a classe de sementes de trigo com base em atributos físicos como área, perímetro e compacidade. Como as classes são balanceadas e os dados possuem características não-lineares, modelos que exploram essa complexidade naturalmente se destacam.")     
-
+        
     
-    resultado_caminho = os.path.join(pasta_resultados, "resultados_modelos_otimizados.csv")
-    tempo_caminho = os.path.join(pasta_resultados, "tempos_modelos_otimizados.csv")
+    resultado_caminho = os.path.join(pasta_resultados, "melhores_modelos_otimizados.csv")
+    tempo_caminho = os.path.join(pasta_resultados, "tempos_otimizados.csv")
 
     if not os.path.exists(resultado_caminho) or not os.path.exists(tempo_caminho):
         st.error("Arquivos de resultados ou tempos não encontrados.")
@@ -42,7 +41,7 @@ def _machine_learning_results():
         cores_gradiente = plt.colormaps['viridis'](np.linspace(0.2, 0.8, num_modelos))
 
 
-        st.header("Tabela de Métricas de Avaliação")
+        st.header("Tabela de Métricas de Avaliação dos TOP 5 Modelos")
         st.dataframe(df_resultados.set_index('Modelo'))
 
         st.header("Gráficos de Comparação")
@@ -57,13 +56,11 @@ def _machine_learning_results():
         st.pyplot(fig_acuracia)
         
         st.text('''
-            Modelos menos precisos:
-        - Decision Tree (d3 e dNone) aparecem no início, com acurácia um pouco inferior aos demais (cerca de 0.82 - 0.84). 
-        - Esses modelos tendem a ser mais simples e menos robustos, o que explica a menor performance.
-        
-            Melhor desempenho:
-        - MLP (rede neural com 100 neurônios na camada escondida) apresenta a maior acurácia (~0.93).
-        - Isso sugere que o problema em questão se beneficia de maior capacidade de modelagem não-linear.
+           - DecTree d5 e d3 → 0.9524 (melhores valores)
+
+           - Os outros três modelos ficaram em 0.9286
+
+           - As árvores de decisão simples foram mais precisas nesse dataset.
         
         ''')
 
@@ -77,14 +74,40 @@ def _machine_learning_results():
         st.pyplot(fig_f1)
 
         st.text('''
-            Modelos com menor F1 Score:
-        - Decision Tree (d3 e dNone) estão no final da lista novamente, com desempenho inferior (F1 próximo de 0.82 - 0.84).
-        - Isso reforça que árvores de decisão simples não conseguem capturar bem a complexidade do problema.
-
-            Melhor desempenho:
-        - MLP (rede neural com 100 neurônios na camada escondida) apresenta a maior acurácia (~0.93).
-        - Isso sugere que o problema em questão se beneficia de maior capacidade de modelagem não-linear.
+            Bagging, GradBoost e MLP:
+            
+                F1: 0.9286
+                    
+            DecTree d5 e d3:
+            
+                F1: 0.9524
+                
+                De novo, as árvores de decisão isoladas (mesmo rasas) foram melhores que ensembles e MLP.
         ''')
+        
+        # Gráfico de ROC AUC
+        st.subheader("ROC AUC dos Modelos")
+        fig_f1, ax_f1 = plt.subplots(figsize=(6, 4))
+        ax_f1.barh(df_resultados['Modelo'], df_resultados['ROC AUC'], color=cores_gradiente)
+        ax_f1.set_xlabel('ROC AUC')
+        ax_f1.set_title('ROC AUC por Modelo Otimizado')
+        ax_f1.set_xlim(0, 1)
+        st.pyplot(fig_f1)
+
+        st.text('''
+         - Bagging: 0.980
+
+         - GradBoost: 0.9787
+
+         - MLP: 0.983 (melhor valor global)
+
+         - DecTree d5 e d3: 0.9643
+
+         - Aqui o cenário muda: apesar de terem menor accuracy, os modelos ensemble e MLP tiveram maior capacidade de discriminar as  classes
+        ''')
+        
+        
+        
         # Gráfico de Tempo de Treinamento
         st.subheader("Tempo de Treinamento")
         fig_tempo, ax_tempo = plt.subplots(figsize=(6, 4))
@@ -108,7 +131,10 @@ def _machine_learning_results():
         
                 ''')
         
+      
         
+        
+
         st.header("🔍 Resumo da Análise dos Resultados")
         
         st.markdown("###### - Modelos lineares como **Logistic Regression** e **LDA** alcançam desempenho razoável, mas não atingem a performance dos ensembles, por serem limitados a relações lineares entre características e classe.")

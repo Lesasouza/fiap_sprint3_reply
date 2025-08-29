@@ -1,0 +1,20 @@
+Modelo,Tempo Treinamento (s)
+GradBoost 100,1.395
+LogReg 18,0.005
+RandForest 150,0.244
+ExtraTrees 200,0.327
+ExtraTrees 100,0.079
+SVM rbf,2.606
+"MLP (50, 50)",0.107
+LDA,0.001
+Naive Bayes 33,0.001
+QDA,0.001
+GradBoost 50,5.408
+SVM sigmoid,2.508
+GradBoost 200,1.507
+AdaBoost 50,0.267
+KNN 7,0.002
+AdaBoost 150,0.272
+"MLP (100,)",0.068
+Naive Bayes 73,0.001
+Bagging DT dNone,0.119
