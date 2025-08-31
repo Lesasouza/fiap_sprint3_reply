@@ -12,7 +12,7 @@ def _machine_learning_results():
     Função para exibir os resultados do processo de machine learning.
     """
     # Verifica se a pasta de resultados existe
-    pasta_resultados = os.path.join(os.path.dirname(__file__), "..", "machine_learning")
+    pasta_resultados = os.path.join(os.path.dirname(__file__), "..", "machine_learning", "jupyer")
     
     
     if not os.path.exists(pasta_resultados):
