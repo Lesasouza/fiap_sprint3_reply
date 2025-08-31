@@ -7,6 +7,7 @@ from src.dashboard.principal import get_principal_page
 from src.dashboard.generic.table_view import TableView
 from src.database.dynamic_import import import_models
 from src.dashboard.menu import menu
+from src.dashboard.manual import previsao_manual_page
 
 
 def get_generic_pages() -> list:
@@ -39,6 +40,7 @@ def navigation():
         *get_generic_pages(),
         exportar_db_page,
         importar_db_page,
+        previsao_manual_page
     ])
 
     menu()
