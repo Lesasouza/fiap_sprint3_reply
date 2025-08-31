@@ -3,6 +3,7 @@ import streamlit as st
 from src.dashboard.database.exportar import exportar_db_page
 from src.dashboard.database.importar import importar_db_page
 from src.dashboard.global_messages import get_global_messages
+from src.dashboard.manual import previsao_manual_page
 from src.dashboard.principal import get_principal_page
 from src.dashboard.generic.table_view import TableView
 from src.database.dynamic_import import import_models
@@ -39,6 +40,7 @@ def navigation():
         *get_generic_pages(),
         exportar_db_page,
         importar_db_page,
+        previsao_manual_page
     ])
 
     menu()
