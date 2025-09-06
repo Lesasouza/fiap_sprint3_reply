@@ -12,6 +12,8 @@ from sklearn.model_selection import RandomizedSearchCV
 import threading
 from datetime import datetime
 from sklearn.metrics import f1_score
+import joblib
+import os
 
 RANDOM_STATE = 59
 
@@ -135,6 +137,14 @@ def train_all_models_multi_thread() -> dict:
 
     return results
 
+def salvar_modelos(resultados, pasta_destino='modelos_salvos'):
+    os.makedirs(pasta_destino, exist_ok=True)
+    for nome, modelo in resultados.items():
+        caminho = os.path.join(pasta_destino, f'{nome}.joblib')
+        joblib.dump(modelo, caminho)
+        print(f'Modelo {nome} salvo em {caminho}')
+
+
 if __name__ == '__main__':
 
     pd.set_option('display.max_columns', 50)
@@ -150,3 +160,5 @@ if __name__ == '__main__':
         y_pred = modelo.predict(X_test)
         f1 = f1_score(y_test, y_pred)
         print(f"{nome}: F1-score = {f1:.4f}")
+
+    salvar_modelos(resultados)
