@@ -341,86 +341,80 @@ LOGGING_ENABLED=true
 ENABLE_API=true
 ```
 
-Ao iniciar o Dashboard, o usuário será direcionado para a interface do Streamlit, onde poderá visualizar os dados coletados pelos sensores e interagir com os gráficos gerados.
-A página pricipal do dashboard exibe uma exploração de dados, a qual pode ser filtrada por data de leitura.
+:
+
+📊 Resultados do Machine Learning
+
+Este projeto apresenta, em uma interface interativa com Streamlit, os resultados de um processo de otimização de modelos de machine learning.
+
+São exibidas métricas de desempenho, comparações gráficas e análise de tempos de treinamento, auxiliando na interpretação dos modelos avaliados.
+
+🚀 Funcionalidades
+
+✅ Carregamento automático dos resultados e tempos de treinamento dos modelos.
+
+✅ Exibição em tabela interativa com as principais métricas de avaliação.
+
+✅ Visualizações gráficas:
+
+Acurácia
+
+F1-Score
+
+ROC AUC
+
+Tempo de Treinamento
+
+✅ Resumos explicativos dos resultados e insights obtidos.
+
+✅ Conclusão sobre melhores modelos considerando precisão, interpretabilidade e custo computacional.
+
+📊 Exemplos de Resultados
+
+<img width="1437" height="777" alt="image" src="assets/f1 score.png" />
+<img width="1437" height="777" alt="image" src="assets/acurácia.png" />
+<img width="1437" height="777" alt="image" src="assets/auc.png" />
 
 
-<p align="center">
-  <img src="assets/dashboard/principal/principal_1.JPG" alt="principal_1" border="0" width=70% height=70%>
-</p>
-<p align="center">
-  <img src="assets/dashboard/principal/principal_2.JPG" alt="principal_2" border="0" width=70% height=70%>
-</p>
-<p align="center">
-  <img src="assets/dashboard/principal/principal_3.JPG" alt="principal_3" border="0" width=70% height=70%>
-</p>
-<p align="center">
-  <img src="assets/dashboard/principal/principal_4.JPG" alt="principal_4" border="0" width=70% height=70%>
-</p>
-<p align="center">
-  <img src="assets/dashboard/principal/principal_5.JPG" alt="principal_5" border="0" width=70% height=70%>
-</p>
-<p align="center">
-  <img src="assets/dashboard/principal/principal_6.JPG" alt="principal_6" border="0" width=70% height=70%>
-</p>
 
-O Dashboard também permite realizar operações CRUD. A seguir, um exemplo de como cadastrar uma nova leitura de sensor:
+# 9. View Manual
 
-Clique em "Leituras de Sensores" no menu lateral e posteriormente em "Novo".
+<img width="1437" height="777" alt="image" src="assets/manual.png" />
 
-<p align="center">
-  <img src="assets/dashboard/exemplo_cadastro/exemplo_cadastro_1.JPG" alt="exemplo_cadastro_1" border="0" width=70% height=70%>
-</p>
+🤖 Classificador de Equipamentos
 
-Preencha os campos necessários e clique em "Salvar".
+Este módulo fornece uma interface em Streamlit para carregar modelos de machine learning previamente treinados (arquivos .joblib) e realizar previsões manuais com base em características inseridas pelo usuário.
 
-<p align="center">
-  <img src="assets/dashboard/exemplo_cadastro/exemplo_cadastro_2.JPG" alt="exemplo_cadastro_2" border="0" width=70% height=70%>
-</p>
+🚀 Funcionalidades
 
-Uma mensagem de sucesso será exibida, confirmando que a leitura foi cadastrada com sucesso.
+✅ Carregamento dinâmico de modelos de classificação salvos em .joblib.
 
+✅ Interface simples para entrada de dados (Lux, Temperatura, Vibração).
 
-<p align="center">
-  <img src="assets/dashboard/exemplo_cadastro/exemplo_cadastro_3.JPG" alt="exemplo_cadastro_3" border="0" width=70% height=70%>
-</p>
+✅ Previsão com retorno textual:
 
-Caso necessário o usuário pode editar ou excluir uma leitura existente. Basta selecionar a linha desejada e clicar no botão "Editar". Para excluir é só clicar no botão "Excluir" dentro da tela de edição.
+"Manutenção Necessária"
 
-<p align="center">
-  <img src="assets/dashboard/exemplo_cadastro/exemplo_cadastro_4.JPG" alt="exemplo_cadastro_4" border="0" width=70% height=70%>
-</p>
+"Sem Manutenção Necessária"
 
-<p align="center">
-  <img src="assets/dashboard/exemplo_cadastro/exemplo_cadastro_5.JPG" alt="exemplo_cadastro_5" border="0" width=70% height=70%>
-</p>
+✅ Seleção do modelo desejado através de um menu interativo.
 
+📊 Exemplo de Uso
+Entrada:
 
-# 9. Gráficos e Insights Iniciais
+Lux = 15
 
-A análise exploratória dos dados coletados é realizada por meio do dashboard desenvolvido em Python/Streamlit, localizado em [src/dashboard/plots/analise_exploratoria.py](src/dashboard/plots/analise_exploratoria.py). A seguir, detalhamos os principais gráficos e suas funções:
+Temperatura = 14
 
-- **Tabela Consolidada de Leituras**: Apresenta todos os dados coletados pelos sensores, organizados por data/hora e tipo de sensor. Permite uma visão geral dos valores registrados ao longo do tempo.
+Vibração = 0
 
-- **Gráficos de Linha por Tipo de Sensor**: Para cada sensor (temperatura, vibração, luminosidade), é gerado um gráfico de linha mostrando a evolução dos valores ao longo do tempo. Isso facilita a identificação de tendências, picos e padrões sazonais nos dados.
+Saída:
 
-    <p align="center">
-      <img src="assets/grafico_linhas.JPG" alt="Gráfico de Linha" width="70%">
-    </p>
+✅ Sem Manutenção Necessária
+(ou)
 
-- **Boxplot dos Valores dos Sensores**: Exibe a distribuição estatística dos valores de cada sensor, destacando mediana, quartis e possíveis outliers. É útil para comparar a variabilidade entre sensores e identificar leituras atípicas.
+⚠️ Manutenção Necessária
 
-- **Matriz de Correlação entre Sensores**: Mostra o grau de correlação entre os diferentes tipos de sensores. Um mapa de calor (heatmap) indica visualmente se há relação linear entre, por exemplo, temperatura e vibração, auxiliando na análise de possíveis causas e efeitos.
-
-- **Scatterplot (Dispersão) entre Sensores**: Permite visualizar a relação entre dois sensores (ex: temperatura vs. vibração), facilitando a identificação de padrões ou agrupamentos nos dados.
-
-- **Scatterplot 3D**: Quando há pelo menos três sensores, é possível visualizar a relação entre eles em um gráfico tridimensional, enriquecendo a análise multivariada.
-
-- **Barplot da Média dos Valores por Tipo de Sensor**: Mostra a média dos valores registrados para cada tipo de sensor, permitindo uma comparação direta entre eles.
-
-- **Pairplot dos Sensores**: Exibe múltiplos gráficos de dispersão entre todos os pares de sensores, facilitando a análise cruzada e a identificação de correlações múltiplas.
-
-Esses gráficos são fundamentais para compreender o comportamento dos sensores, identificar anomalias, padrões e possíveis relações entre as variáveis monitoradas. A interface do dashboard permite filtrar por datas e tipos de sensores, tornando a análise flexível e interativa.
 
 # 10. Importando a Base de dados utilizada pelo Grupo
 
