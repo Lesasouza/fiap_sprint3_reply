@@ -466,6 +466,7 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
   - <b>dashboard</b>: Código responsável pela construção do dashboard, desenvolvido em Python com uso da biblioteca Streamlit. ([dashboard](src/dashboard/))
   - <b>database</b>: Módulo responsável pelas operações de banco de dados, incluindo conexões, inserções, listagens, edições e exclusões de registros.
   - <b>logger</b>: Código responsável por registrar (logar) todas as operações executadas no sistema, garantindo rastreabilidade.
+  - <b>machine_learning</b>: Contém o código e notebooks relacionados ao desenvolvimento e treinamento dos modelos de Machine Learning.
   - <b>plots</b>: Contém o código responsável pela geração de gráficos e visualizações, utilizado para exibir dados de forma clara e intuitiva no dashboard.
   - <b>wokwi</b>: Contém o código do sensor ESP32 utilizado na simulação de sensores.
   - <b>wokwi_api</b>: Contém o código responsável por criar a API que vai salvar as leituras dos sensores no banco de dados.
