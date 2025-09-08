@@ -6,7 +6,7 @@
 
 <br>
 
-# Projeto: fiap_sprint2_reply
+# Projeto: fiap_sprint3_reply
 
 ## Atividade em Grupo: FIAP - 1TIAOB - 2025/1 - Fase4 Sprint 2 - Reply
 
@@ -22,6 +22,10 @@
 - <a href="proflucas.moreira@fiap.com.br">Lucas Gomes Moreira</a>
 ### Coordenador(a)
 - <a href="profandre.chiovato@fiap.com.br">André Godoi Chiovato</a>
+- 
+**Confira o vídeo de apresentação do projeto clicando no link:**
+
+[https://www.youtube.com/watch?v=AHPvV46sFlQ](https://www.youtube.com/watch?v=AHPvV46sFlQ)
 
 # 1. Descrição do Projeto
 
@@ -29,15 +33,18 @@ A coleta de dados em ambientes industriais modernos é realizada através de sen
 
 Com a chegada da Indústria 4.0, empresas têm apostado fortemente na digitalização do chão de fábrica, conectando sensores e dispositivos a plataformas de dados em nuvem. Isso permite a análise em tempo real e a tomada de decisões baseadas em dados.
 
-Nesta fase do desafio, simulamos esse cenário utilizando plataformas online de simulação de circuitos e sensores, como o VSCode, Wokwi e PlatformIO. O objetivo é criar um circuito virtual funcional com ESP32, integrando sensores simulados para gerar dados que serão utilizados em análises iniciais.
+Nesta fase do desafio, utilizamos a simuação criada na fase anterior para treinar uma IA a qual prevê se a máquina precisa de manutenção ou não.
 
 # 2. Objetivos do Projeto
 
-- Projetar e simular um sistema básico de coleta de dados utilizando ESP32 e sensores virtuais.
-- Compreender como sensores simulados podem representar sensores reais em sistemas embarcados.
-- Construir um circuito simples e funcional, integrando sensores de temperatura, luminosidade e vibração.
-- Registrar e analisar os dados coletados, gerando gráficos e estatísticas iniciais.
-- Documentar todo o processo, incluindo prints, código, dados e análises.
+- Modelar um banco de dados relacional para armazenar leituras de sensores e informações de equipamentos industriais.
+- Criar e documentar o diagrama ER (Entidade-Relacionamento) e o script SQL de criação das tabelas.
+- Simular a coleta de dados de sensores utilizando ESP32 e enviar os dados para uma API desenvolvida em Python.
+- Implementar uma API para receber, validar e armazenar os dados dos sensores no banco de dados.
+- Desenvolver e documentar um modelo de Machine Learning para prever a necessidade de manutenção dos equipamentos, utilizando dados coletados.
+- Disponibilizar o código-fonte do modelo de ML (Python ou Jupyter Notebook) e a base de dados utilizada para treino/teste (CSV ou equivalente).
+- Apresentar gráficos, prints e principais resultados obtidos com o modelo de ML.
+- Elaborar documentação explicando a modelagem do banco, a implementação do ML e os resultados alcançados.
 
 # 3. Justificativa dos Sensores Escolhidos
 
@@ -306,6 +313,9 @@ O sistema foi desenvolvido em Python e utiliza um banco de dados SQLite para arm
   - dotenv==0.9.9
   - seaborn==0.13.2
   - plotly==6.1.2
+  - joblib==1.5.2
+  - scipy==1.16.1
+  - scikit-learn==1.7.1
 
 ## 📂 Instalação
 
@@ -341,9 +351,16 @@ LOGGING_ENABLED=true
 ENABLE_API=true
 ```
 
-:
+# 9. Treinamento do modelo de Machine Learning
 
-📊 Resultados do Machine Learning
+O treinamento do modelo de Machine Learning foi realizado utilizando a biblioteca Scikit-Learn em Python, podendo ser verificano no arquivo [treinamento_ml.ipynb](src/machine_learning/jupyter/treinamento_ml.ipynb).
+Nele também estão disponíveis análises exploratórias dos dados, pré-processamento e avaliação dos modelos, bem como células markdown explicativas.
+
+O dataset utilizado para o treinamento do modelo pode ser encontrado na pasta [leituras_com_equipamento.csv](src/machine_learning/jupyter/leituras_com_equipamento.csv).
+
+Ainda, os modelos treinados e otimizados foram salvos em arquivos `.pkl` e podem ser encontrados na pasta [modelos_otimizados_salvos](assets/modelos_otimizados_salvos).
+
+# 10. 📊 Resultados do Machine Learning
 
 Este projeto apresenta, em uma interface interativa com Streamlit, os resultados de um processo de otimização de modelos de machine learning.
 
@@ -375,9 +392,9 @@ Tempo de Treinamento
 <img width="1437" height="777" alt="image" src="assets/acurácia.png" />
 <img width="1437" height="777" alt="image" src="assets/auc.png" />
 
+# 9. Previsão Manual com Modelos Treinados
 
-
-# 9. View Manual
+Também é possível realizar previsões manuais utilizando modelos de machine learning previamente treinados e salvos em arquivos .joblib, conforme demonstrado na imagem abaixo:
 
 <img width="1437" height="777" alt="image" src="assets/manual.png" />
 
@@ -416,7 +433,7 @@ Saída:
 ⚠️ Manutenção Necessária
 
 
-# 10. Importando a Base de dados utilizada pelo Grupo
+# 11. Importando a Base de dados utilizada pelo Grupo
 
 As tabelas com os dados utilizados no sistema podem ser encontradas na pasta em [assets/database_export.zip](assets/database_export.zip).
 
