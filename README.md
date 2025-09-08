@@ -8,7 +8,7 @@
 
 # Projeto: fiap_sprint3_reply
 
-## Atividade em Grupo: FIAP - 1TIAOB - 2025/1 - Fase4 Sprint 2 - Reply
+## Atividade em Grupo: FIAP - 1TIAOB - 2025/1 - Fase5 Sprint 3 - Reply
 
 ## 👨‍🎓 Integrantes: 
 - <a href="">Alice C. M. Assis - RM 566233</a>
